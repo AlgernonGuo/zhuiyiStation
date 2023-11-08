@@ -1,0 +1,6 @@
+/.DS_Store
+/.venv
+/.vscode
+
+# 将所有的__pycache__都忽略
+__pycache__/
