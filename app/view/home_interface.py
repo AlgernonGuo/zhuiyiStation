@@ -7,8 +7,6 @@ from qfluentwidgets import ScrollArea, isDarkTheme, FluentIcon
 
 
 class BannerWidget(QWidget):
-    """Banner widget"""
-
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.setFixedHeight(336)
@@ -60,10 +58,22 @@ class BannerWidget(QWidget):
 
 
 class HomeInterface(ScrollArea):
-    """Home interface"""
-
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.banner = BannerWidget(self)
         self.view = QWidget(self)
         self.vBoxLayout = QVBoxLayout(self.view)
+        self.__initWidget()
+
+    def __initWidget(self):
+        self.view.setObjectName("view")
+        self.setObjectName("homeInterface")
+
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setWidget(self.view)
+        self.setWidgetResizable(True)
+
+        self.vBoxLayout.setContentsMargins(0, 0, 0, 36)
+        self.vBoxLayout.setSpacing(40)
+        self.vBoxLayout.addWidget(self.banner)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)

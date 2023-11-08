@@ -3,15 +3,16 @@ from qfluentwidgets import SplashScreen, FluentWindow, Dialog, PushButton
 from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QIcon, QPixmap
 from qfluentwidgets import FluentIcon as FIF
-
 from app.view.home_interface import HomeInterface
+from app.view.k8s_interface import K8sInterface
 
 
 class MainWindow(FluentWindow):
     def __init__(self):
         super().__init__()
         self.initWindow()
-        self.addSubInterface(HomeInterface(self), FIF.HOME, self.tr('Home'))
+        self.addSubInterface(HomeInterface(self), FIF.HOME, self.tr("Home"))
+        self.addSubInterface(K8sInterface(self), FIF.IOT, self.tr("K8s"))
         self.splashScreen.finish()
 
     def initWindow(self):
@@ -24,14 +25,6 @@ class MainWindow(FluentWindow):
         self.splashScreen = SplashScreen(self.windowIcon(), self)
         self.splashScreen.setIconSize(QSize(106, 106))
         self.splashScreen.raise_()
-
-        qbtn = PushButton("Quit", self)
-        qbtn.clicked.connect(QApplication.instance().quit)
-        qbtn.resize(qbtn.sizeHint())
-        qbtn.move(150, 150)
-
-        btn = PushButton("Click Me", self)
-        btn.move(100, 100)
 
         self.center()
         self.show()
@@ -51,14 +44,3 @@ class MainWindow(FluentWindow):
 
         qr.moveCenter(cp)
         self.move(qr.topLeft())
-
-
-class Service:
-    i = 1
-
-    def __init__(self):
-        self.i = 1
-
-    def add():
-        Service.i += 1
-        print(Service.i)
